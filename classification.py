@@ -1,10 +1,10 @@
-import numpy
+# import numpy
 from keras import models
 from keras import layers, losses
-from numpy import loadtxt
+# from numpy import loadtxt
 from keras import optimizers
 import pandas as pd
-import numpy as np
+# import numpy as np
 from sklearn.preprocessing import StandardScaler
 
 from keras import backend as K
@@ -63,7 +63,7 @@ print('\n\nRMSprop:\n')
 model.compile(optimizer=optimizers.RMSprop(lr=0.001),
               loss='mse',
               metrics = metrics)
-model.fit(X_train_std, y_train,  batch_size=120, epochs=5)
+model.fit(X_train_std, y_train,  batch_size=120, epochs= 10)
 
 print('\ntrain results:\n')
 loss, accuracy, precision, recall = model.evaluate(X_train_std, y_train, verbose=0)
@@ -72,6 +72,28 @@ print("loss={:.2f}, accuracy={:.2f}, precision={:.2f}, recall={:.2f}".format(los
 print('\ntest results:\n')
 loss, accuracy, precision, recall = model.evaluate(X_test_std, y_test, verbose=0)
 print("loss={:.2f}, accuracy={:.2f}, precision={:.2f}, recall={:.2f}".format(loss, accuracy, precision, recall))
+
+
+# cccccccccccccccccccccccccccccccccccccccccc
+model = models.Sequential()
+model.add(layers.Dense(8, activation='relu', input_shape=(33,)))
+model.add(layers.Dense(2, activation='relu'))
+model.add(layers.Dense(1, activation='sigmoid'))
+
+
+model.compile(optimizer=optimizers.RMSprop(lr=0.001),
+              loss='binary_crossentropy',
+              metrics = metrics)
+model.fit(X_train_std, y_train,  batch_size=120, epochs= 20)
+
+print('\ntrain results:\n')
+loss, accuracy, precision, recall = model.evaluate(X_train_std, y_train, verbose=0)
+print("loss={:.2f}, accuracy={:.2f}, precision={:.2f}, recall={:.2f}".format(loss, accuracy, precision, recall))
+
+print('\ntest results:\n')
+loss, accuracy, precision, recall = model.evaluate(X_test_std, y_test, verbose=0)
+print("loss={:.2f}, accuracy={:.2f}, precision={:.2f}, recall={:.2f}".format(loss, accuracy, precision, recall))
+
 
 
 # #  НАДО ЛИ ТАКОЕ ДЕЛАТЬ?

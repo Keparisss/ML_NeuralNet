@@ -5,7 +5,7 @@ from keras.layers import Dense
 from numpy import loadtxt
 from keras import optimizers
 import pandas as pd
-import numpy as np
+# import numpy as np
 from sklearn.preprocessing import StandardScaler
 
 
@@ -13,7 +13,7 @@ def build_model():
   model = models.Sequential([
     layers.Dense(64, activation='relu', input_shape=[len(data.keys())-1]),
     layers.Dense(64, activation='relu'),
-    layers.Dense(1, activation='sigmoid')
+    layers.Dense(1)
   ])
 
   optimizer = optimizers.RMSprop(0.001)
@@ -64,12 +64,12 @@ NN_model = Sequential()
 # The Input Layer :
 NN_model.add(Dense(128, kernel_initializer='normal', input_shape=[len(data.keys())-1], activation='relu'))
 # The Hidden Layers :
-NN_model.add(Dense(256, kernel_initializer='normal',activation='relu'))
-NN_model.add(Dense(256, kernel_initializer='normal',activation='relu'))
-NN_model.add(Dense(256, kernel_initializer='normal',activation='relu'))
+NN_model.add(Dense(256, kernel_initializer='normal', activation='relu'))
+NN_model.add(Dense(256, kernel_initializer='normal', activation='relu'))
+NN_model.add(Dense(256, kernel_initializer='normal', activation='relu'))
 
 # The Output Layer :
-NN_model.add(Dense(1, kernel_initializer='normal',activation='linear'))
+NN_model.add(Dense(1, kernel_initializer='normal', activation='linear'))
 
 # Compile the network :
 NN_model.compile(loss='mean_absolute_error', optimizer='adam', metrics=['mean_absolute_error'])
